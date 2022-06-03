@@ -1,0 +1,43 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+// A iterative binary search function. It returns
+// location of x in given array arr[low..high] if present,
+// otherwise -1
+int binSearch(int a[], int low, int high, int target)
+{
+	while (low <= high) {
+		int mid = low + (high - low) / 2;   //finding the middle element
+
+		// Check if target is present at mid
+		if (a[mid] == target)
+			return mid;
+
+		// If target greater, ignore left half
+		if (a[mid] < target)
+			low = mid + 1;
+
+		// If target is smaller, ignore right half
+		else
+			high = mid - 1;
+	}
+
+	// if we reach here, then element was
+	// not present
+	return -1;
+}
+
+int main()
+{
+	int arr[] = {1,2,3,4,5};
+	int x = 5;
+	int n = sizeof(arr) / sizeof(arr[0]);
+	int ans = binSearch(arr, 0, n - 1, x);
+	if(ans==-1){
+      cout<<"Element is not present"<<'\n';
+	}
+	else{
+	    cout<<"Element is present at index"<<" "<<ans<<'\n';
+	}
+	return 0;
+}
